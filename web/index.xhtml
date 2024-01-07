@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
+    <head>
+        <title>Posta Medica</title>
+        <!--CSS - ÍCONOS -->
+        <script src="https://kit.fontawesome.com/a20b11dfdd.js" crossorigin="anonymous"></script>
+        <link rel="shortcut icon" href="perfil.png"/>
+        <style>
+            @import "../CSS/logincss.css";
+        </style>
+    </head>
+    <body class="bodyform">
+        <div class="contenedor">
+            <div class="img">
+                <img src="../CSS/login.png" alt=""/>
+            </div>
+            <div class="contenido-login">
+                <h:form class="form">
+                    <img src="../CSS/perfil.png" alt=""/>
+                    <h2><strong>BIENVENIDO</strong></h2>
+                    <div class="input-div nit">
+                        <div class="icon">
+                            <b:iconAwesome class="icon" value="user"/>
+                        </div>
+                        <div class="div">
+                            <h:inputText class="inputlogin" id="Dniuser" value="#{beanLogin.dniuser}">
+                            </h:inputText>
+                        </div>
+                    </div>
+                    <div class="input-div pass">
+                        <div class="i" >
+                            <b:iconAwesome class="icon" value="key"/>
+                        </div>
+                        <div class="div">
+                            <h:inputSecret class="inputlogin" id="Claveuser" value="#{beanLogin.claveuser}">
+                            </h:inputSecret>
+                        </div>
+                    </div>
+                    <br></br>
+                    <br></br>
+                    
+                    <b:commandButton class="btn btn-info" value="Iniciar Sesión" action="#{beanLogin.validarlogin()}"/>
+                </h:form>
+            </div>
+        </div>
+    </body>
+</html>
+

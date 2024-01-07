@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Posta Medica</title>
+        <style>
+            @import "../CSS/vistacss.css";
+        </style>
+        <script src="https://kit.fontawesome.com/a20b11dfdd.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+        <script>
+            function cargardatos(idpac, dnipac, apellidospac, nombrespac, fechanacpac, telefonopac, sexopac, domiciliopac, seguropac, tiposangrepac, alergiaspac, fecregpac) {
+                console.log('Sexo:', sexopac);
+
+                // Obtener el valor seleccionado del componente b:selectOneMenu
+                var elementSexo = document.getElementById('formedit:sexopac_input');
+                var selectedSexo = elementSexo ? elementSexo.value : null;
+                
+                var elementID= document.getElementById('input_formedit:idpac');
+                var elementDNI= document.getElementById('input_formedit:dnipac');
+                var elementAp    = document.getElementById('input_formedit:apellidospac');
+                var elementNom = document.getElementById('input_formedit:nombrespac');
+                var elementFe    = document.getElementById('input_formedit:fechanacpac');
+                var elementTe    = document.getElementById('input_formedit:telefonopac');
+                
+                var elementDomicilio = document.getElementById('input_formedit:domiciliopac');
+                var elementSeguro = document.getElementById('input_formedit:seguropac');
+                var elementTipo = document.getElementById('input_formedit:tiposangrepac');
+                var elementAler = document.getElementById('input_formedit:alergiaspac');
+                var elementFec  = document.getElementById('input_formedit:fecregpac');
+                
+                if (elementID &amp;&amp; elementDNI &amp;&amp; elementAp &amp;&amp; elementNom &amp;&amp; elementFe &amp;&amp; elementTe  &amp;&amp; elementDomicilio &amp;&amp; elementSeguro &amp;&amp; elementTipo  &amp;&amp; elementAler &amp;&amp; elementFec ) {
+                   
+                    elementID.value = idpac;
+                    elementDNI.value = dnipac;
+                    elementAp.value= apellidospac;
+                    elementNom.value = nombrespac;
+                    elementFe.value = fechanacpac;
+                    elementTe.value = telefonopac;
+                  
+                    elementDomicilio.value = domiciliopac;
+                    elementSeguro.value = seguropac;
+                    elementTipo.value = tiposangrepac;
+                    elementAler.value = alergiaspac;
+                    elementFec.value = fecregpac;
+                    
+                    // Asignar el valor a la variable sexopac
+                    sexopac = selectedSexo;
+                   
+                } else {
+                    console.error('Al menos uno de los elementos no fue encontrado.');
+                }
+            }
+        </script>
+    </h:head>
+    <h:body class="completo">
+        <div class="sidebar-menu">
+            <div class="main-menu">
+                <nav>
+                    <ul>
+                        <li class="activelog" style="padding-top: 13px; margin-bottom: 0%;">
+                            <a href="#" class="log">
+                                <img src="../CSS/MesaRedonda.png" alt="Mesa Redonda"></img>
+                                <p class="logo-tit">POSTA MÉDICA</p>
+                            </a>
+                        </li>
+                        <li style="background: #F4478E;">
+                            <hr style="margin-top: 18px; margin-bottom: 5px; background: #F4478E;">
+                                <h:outputLabel class="bienvenida" value="#{beanLogin.nombresuser}"/>
+                                <h:outputLabel class="bienvenida" value="#{beanLogin.roluser}"/>
+                            <hr style="margin-top: 1px; margin-bottom: 5px;"></hr>
+                        </hr>
+                        </li>
+                        <li class="active" style="padding-top: 10px;"><span style="font-size: 14px; color: #D9E6E8;">Pacientes</span></li>
+                        <li class="active"><a href="Pacientes.xhtml"><i class="fas fa-fw fa-users" style="color: #fff;"></i><span>Datos</span></a></li>
+                        <li class="active"><a href="Historias.xhtml"><i class="fas fa-hospital-user" style="color: #fff;"></i> <span>Historias</span></a></li>
+                        <li class="active" style="padding-top: 10px;"><span style="font-size: 14px; color: #D9E6E8;">Personal Médico</span></li>
+                        <li class="active"><a href="Medicos.xhtml"><i class="fas fa-user-doctor" style="color: #fff;"></i> <span>Médicos</span></a></li>
+                        <li class="active"><a href="Especialidades.xhtml"><i class="fas fa-hospital" style="color: #fff;"></i> <span>Especialidades</span></a></li>
+                        <li class="active" style="padding-top: 10px;"><span style="font-size: 14px; color: #D9E6E8;">Atención Médica</span></li>
+                        <li class="active"><a href="Citas.xhtml"><i class="fa-regular fa-calendar-days" style="color: #fff;"></i> <span>Citas Médicas</span></a></li>
+                        <li class="active"><a href="Triaje.xhtml"><i class="fas fa-heart-pulse" style="color: #fff;"></i> <span>Triaje</span></a></li>
+                        <li class="active"><a href="Consultas.xhtml"><i class="fas fa-stethoscope" style="color: #fff;"></i> <span>Consultas</span></a></li>
+                        <li class="active" style="padding-top: 10px;"><span style="font-size: 14px; color: #D9E6E8;">Configuración</span></li>
+                        <li class="active"><a href="Usuarios.xhtml"><i class="fas fa-lock" style="color: #fff;"></i> <span>Usuarios</span></a></li>
+                        <li class="active"><a href="index.xhtml"><i class="fas fa-power-off" style="color: #fff;"></i> <span>Cerrar Sesión</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="main-content">
+            
+            <!--FORMULARIO-->
+            <b:panel class="crud" look="primary" style="margin-left: 30px; margin-right: 30px;">
+                <f:facet name="heading">
+                    <h:outputText value="Módulo Pacientes" style="color: white;"/>
+                </f:facet>
+                <b:form id="formedit">
+                    <b:panelGrid columns="4">
+                        <b:inputText value="#{beanPacientes.idpac}" id="idpac" label="ID" required="true"/>
+                        <b:inputText value="#{beanPacientes.dnipac}" id="dnipac" mask="99999999" label="DNI" required="true"/>
+                        <b:inputText value="#{beanPacientes.apellidospac}" id="apellidospac" label="Apellidos" required="true"/>
+                        <b:inputText value="#{beanPacientes.nombrespac}" id="nombrespac" label="Nombres" required="true"/>
+                        <b:inputText value="#{beanPacientes.fechanacpac}" id="fechanacpac" mask="yyyy.mm.dd" label="Fec. Nacimiento" required="true"/>
+                        <b:inputText value="#{beanPacientes.telefonopac}" id="telefonopac" mask="999999999" label="Telefono" required="true"/>
+                        <b:selectOneMenu value="#{beanPacientes.sexopac}" required="true" label="Sexo" id="sexopac">
+                            <f:selectItem itemLabel="Seleccionar" noSelectionOption="true" itemValue="#{null}" />
+                            <f:selectItem itemLabel="Femenino" itemValue="F"/>
+                            <f:selectItem itemLabel="Masculino" itemValue="M"/>
+                        </b:selectOneMenu>
+                        <b:inputText value="#{beanPacientes.domiciliopac}" id="domiciliopac" label="Domicilio" required="true"/>
+                        <b:inputText value="#{beanPacientes.seguropac}" id="seguropac" label="Seguro" required="true"/>
+                        <b:inputText value="#{beanPacientes.tiposangrepac}" id="tiposangrepac" label="Tipo de Sangre" required="true"/>
+                        <b:inputText value="#{beanPacientes.alergiaspac}" id="alergiaspac" label="Alergias" required="true"/>
+                        <b:selectOneMenu value="#{beanPacientes.historiapac}" select2="true" required="true" converter="omnifaces.SelectItemsConverter"
+                                         style="width: 100%;" label="Nro. de Historia" id="pacientecita">
+                            <f:selectItem itemLabel="Seleccionar" noSelectionOption="true" itemValue="#{null}" />
+                            <f:selectItems value="#{beanHistorias.tablaHistorias()}" var="hist" itemValue="#{hist}" itemLabel="#{hist.nrohistlista}" />
+                        </b:selectOneMenu>
+                        <b:inputText value="#{beanPacientes.fecregpac}" id="fecregpac" mask="yyyy.mm.dd" label="Fec. de Registro" disabled="true"/>
+                        <b:formGroup style="margin-top: 25px;">
+                            <b:commandButton value="Agregar" look="success" 
+                                             actionListener="#{beanPacientes.agregarPacientes()}" style="width: 100%;"/>
+                        </b:formGroup>
+                        <b:formGroup style="margin-top: 25px;">
+                            <b:commandButton value="Editar" look="warning" action="#{beanPacientes.actualizarPacientes()}" style="width: 100%;"/>
+                        </b:formGroup>
+                    </b:panelGrid> 
+                </b:form>
+            </b:panel>
+            
+            <!--TABLA-->
+            <b:panel class="tablaregistro" look="primary" title="Registro de Pacientes" collapsible="false" style="margin: 30px;">
+                <h:form>
+                    <b:dataTable value="#{beanPacientes.tablaPacientes()}" var="pa" excel="true"
+                                 fixedHeader="true" scroll-size="400px" scroll-x="false" responsive="true">
+                        <b:dataTableColumn value="#{pa.idpac}" label="ID"/>
+                        <b:dataTableColumn value="#{pa.dnipac}" label="DNI"/>
+                        <b:dataTableColumn value="#{pa.apellidospac}" label="Apellidos"/>
+                        <b:dataTableColumn value="#{pa.nombrespac}" label="Nombres"/>
+                        <b:dataTableColumn value="#{pa.fechanacpac}" label="F. Nac."/>
+                        <b:dataTableColumn value="#{pa.telefonopac}" label="Telefono"/>
+                        <b:dataTableColumn value="#{pa.sexopac}" label="Sexo"/>
+                        <b:dataTableColumn value="#{pa.domiciliopac}" label="Domicilio"/>
+                        <b:dataTableColumn value="#{pa.seguropac}" label="Seguro"/>
+                        <b:dataTableColumn value="#{pa.historiapac.nrohistlista}" label="H.C."/>
+                        <b:dataTableColumn value="#{pa.fecregpac}" label="Fec. Registro"/>
+                        <b:dataTableColumn label="Acciones">
+                            <a class="btn btn-success"
+                                style="width: 40px; align-content: center; font-size: 13px; margin-right: 5px;"
+                                href="javascript:cargardatos('#{pa.idpac}','#{pa.dnipac}','#{pa.apellidospac}','#{pa.nombrespac}','#{pa.fechanacpac}','#{pa.telefonopac}','#{pa.sexopac}','#{pa.domiciliopac}','#{pa.seguropac}','#{pa.tiposangrepac}','#{pa.alergiaspac}','#{pa.fecregpac}')">
+                                <b:iconAwesome class="icon" value="edit"/>
+                            </a>
+                            <b:commandButton look="danger" style="width: 40px; align-content: center;" actionListener="#{beanPacientes.eliminarPacientes(pa)}">
+                                <i class="fas fa-trash" style="color: #fff;"></i>
+                            </b:commandButton>
+                        </b:dataTableColumn>
+                    </b:dataTable>
+                </h:form>
+            </b:panel>
+            
+            
+        </div>
+    </h:body>
+</html>

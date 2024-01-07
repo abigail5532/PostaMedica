@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Posta Medica</title>
+        <style>
+            @import "../CSS/vistacss.css";
+        </style>
+        <script src="https://kit.fontawesome.com/a20b11dfdd.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    </h:head>
+    <h:body class="completo">
+        <div class="sidebar-menu">
+            <div class="main-menu">
+                <nav>
+                    <ul>
+                        <li class="activelog" style="padding-top: 13px; margin-bottom: 0%;">
+                            <a href="#" class="log">
+                                <img src="../CSS/MesaRedonda.png" alt="Mesa Redonda"></img>
+                                <p class="logo-tit">POSTA MÉDICA</p>
+                            </a>
+                        </li>
+                        <li style="background: #F4478E;">
+                            <hr style="margin-top: 18px; margin-bottom: 5px; background: #F4478E;">
+                                <h:outputLabel class="bienvenida" value="#{beanLogin.nombresuser}"/>
+                                <h:outputLabel class="bienvenida" value="#{beanLogin.roluser}"/>
+                            <hr style="margin-top: 1px; margin-bottom: 5px;"></hr>
+                        </hr>
+                        </li>
+                        <li class="active" style="padding-top: 10px;"><span style="font-size: 14px; color: #D9E6E8;">Pacientes</span></li>
+                        <li class="active"><a href="Pacientes.xhtml"><i class="fas fa-fw fa-users" style="color: #fff;"></i><span>Datos</span></a></li>
+                        <li class="active"><a href="Historias.xhtml"><i class="fas fa-hospital-user" style="color: #fff;"></i> <span>Historias</span></a></li>
+                        <li class="active" style="padding-top: 10px;"><span style="font-size: 14px; color: #D9E6E8;">Personal Médico</span></li>
+                        <li class="active"><a href="Medicos.xhtml"><i class="fas fa-user-doctor" style="color: #fff;"></i> <span>Médicos</span></a></li>
+                        <li class="active"><a href="Especialidades.xhtml"><i class="fas fa-hospital" style="color: #fff;"></i> <span>Especialidades</span></a></li>
+                        <li class="active" style="padding-top: 10px;"><span style="font-size: 14px; color: #D9E6E8;">Atención Médica</span></li>
+                        <li class="active"><a href="Citas.xhtml"><i class="fa-regular fa-calendar-days" style="color: #fff;"></i> <span>Citas Médicas</span></a></li>
+                        <li class="active"><a href="Triaje.xhtml"><i class="fas fa-heart-pulse" style="color: #fff;"></i> <span>Triaje</span></a></li>
+                        <li class="active"><a href="Consultas.xhtml"><i class="fas fa-stethoscope" style="color: #fff;"></i> <span>Consultas</span></a></li>
+                        <li class="active" style="padding-top: 10px;"><span style="font-size: 14px; color: #D9E6E8;">Configuración</span></li>
+                        <li class="active"><a href="Usuarios.xhtml"><i class="fas fa-lock" style="color: #fff;"></i> <span>Usuarios</span></a></li>
+                        <li class="active"><a href="index.xhtml"><i class="fas fa-power-off" style="color: #fff;"></i> <span>Cerrar Sesión</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="main-content">
+            
+            <!--TABLA DE CONSULTAS PENDIENTES-->
+            <b:panel class="crud" look="primary" style="margin-left: 30px; margin-right: 30px;" title="Registro de Consultas Pendientes" collapsible="false">
+                <h:form>
+                    <b:dataTable value="#{beanTriaje.tablaTriaje()}" var="tri"
+                                 fixedHeader="true" scroll-size="400px" scroll-x="false" responsive="true">
+                        <b:dataTableColumn value="#{tri.idtri}" label="ID"/>
+                        <b:dataTableColumn value="#{tri.citatri.pacientecita.dnipac}" label="Paciente - DNI"/>
+                        <b:dataTableColumn value="#{tri.citatri.pacientecita.apellidospac}, #{tri.citatri.pacientecita.nombrespac}" label="Paciente - Nombres y Apellidos"/>
+                        <b:dataTableColumn value="#{tri.citatri.especialidadcita.especialidadmed.nombreesp}" label="Especialidad"/>
+                        <b:dataTableColumn value="#{tri.citatri.especialidadcita.apellidosmed}, #{tri.citatri.especialidadcita.nombresmed}" label="Médico"/>
+                        <b:dataTableColumn value="#{tri.citatri.fechacita}" label="Fecha"/>
+                        <b:dataTableColumn value="#{tri.citatri.horacita}" label="Hora"/>
+                        <b:dataTableColumn label="Acciones">
+                            <b:commandButton style="align-content: center; margin-right: 5px; background: #F4478E;"  
+                                             actionListener="#{beanTriaje.obtenerTriaje(tri)}" action="/ConsMedica">
+                                <i class="fas fa-heart-pulse" style="color: #fff; "></i>
+                            </b:commandButton>
+                            <b:commandButton look="warning" style="width: 40px; align-content: center;" actionListener="#{beanTriaje.triajesRealizados(tri)}">
+                                <i class="fas fa-circle-check" style="color: #fff;"></i>
+                            </b:commandButton>
+                        </b:dataTableColumn>
+                    </b:dataTable>
+                </h:form>
+            </b:panel>
+            
+            <!--TABLA DE CONSULTAS PENDIENTES-->
+            <b:panel class="crud" look="primary" style="margin-left: 30px; margin-right: 30px;" title="Registro de Consultas Realizadas" collapsible="false">
+                <h:form>
+                    <b:dataTable value="#{beanConsultas.tablaConsultas()}" var="cons"
+                                 fixedHeader="true" scroll-size="400px" scroll-x="false" responsive="true">
+                        <b:dataTableColumn value="#{cons.idcons}" label="ID"/>
+                        <b:dataTableColumn value="#{cons.triajecons.citatri.pacientecita.dnipac}" label="DNI"/>
+                        <b:dataTableColumn value="#{cons.triajecons.citatri.pacientecita.apellidospac}, #{cons.triajecons.citatri.pacientecita.nombrespac}" label="Apellidos y Nombres"/>
+                        <b:dataTableColumn value="#{cons.triajecons.citatri.fechacita}" label="Fecha"/>
+                        <b:dataTableColumn value="#{cons.triajecons.citatri.horacita}" label="Hora"/>
+                        <b:dataTableColumn value="#{cons.estadocons}" label="Estado"/>
+                    </b:dataTable>
+                </h:form>
+            </b:panel>
+            
+        </div>
+    </h:body>
+</html>
